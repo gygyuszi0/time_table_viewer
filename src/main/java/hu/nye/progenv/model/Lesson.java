@@ -4,11 +4,11 @@ public class Lesson {
     private final Integer id;
     private final String name;
     private final String day;
-    private final String startTime;
-    private final String stopTime;
+    private final LessonTime startTime;
+    private final LessonTime stopTime;
     private final String room;
 
-    public Lesson(Integer id, String name, String day, String startTime, String stopTime, String room) {
+    public Lesson(Integer id, String name, String day, LessonTime startTime, LessonTime stopTime, String room) {
         this.id = id;
         this.name = name;
         this.day = day;
@@ -29,11 +29,11 @@ public class Lesson {
         return day;
     }
 
-    public String getStartTime() {
+    public LessonTime getStartTime() {
         return startTime;
     }
 
-    public String getStopTime() {
+    public LessonTime getStopTime() {
         return stopTime;
     }
 
