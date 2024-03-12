@@ -5,6 +5,7 @@ import java.util.List;
 import hu.nye.progenv.model.Lesson;
 public interface RepositoryInterface {
 
+    public void connectDataBase();
     public void createLesson(Lesson lesson);
     public void deleteLesson(Lesson lesson);
     public void updateLesson(Lesson lesson);
