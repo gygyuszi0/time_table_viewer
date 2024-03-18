@@ -1,14 +1,10 @@
 package hu.nye.progenv.repository;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-import hu.nye.progenv.model.Lesson;
-public interface RepositoryInterface {
+import hu.nye.progenv.repository.DBEntity.Lesson;
 
-    public void connectDataBase();
-    public void createLesson(Lesson lesson);
-    public void deleteLesson(Lesson lesson);
-    public void updateLesson(Lesson lesson);
-    public Lesson getLesson(int id);
-    public List<Lesson> getAllLessons();
+public interface RepositoryInterface extends CrudRepository<Lesson, Long> {
+
+    
 }
