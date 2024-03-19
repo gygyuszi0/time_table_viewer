@@ -6,7 +6,9 @@ import hu.nye.progenv.repository.RepositoryInterface;
 import hu.nye.progenv.repository.DBEntity.Lesson;
 import hu.nye.progenv.service.model.LessonRequest;
 import hu.nye.progenv.service.model.LessonResponse;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LessonService implements LessonInterface {
     
     
