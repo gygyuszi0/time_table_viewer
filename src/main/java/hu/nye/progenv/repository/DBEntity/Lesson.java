@@ -1,6 +1,5 @@
 package hu.nye.progenv.repository.DBEntity;
 
-import hu.nye.progenv.controller.model.LessonTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +20,8 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private LessonTime startTime;
-    private LessonTime stopTime;
+    private Long startTime;
+    private Long stopTime;
     private String room;
 
 }
