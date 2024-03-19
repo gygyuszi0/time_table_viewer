@@ -20,8 +20,8 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long startTime;
-    private Long stopTime;
+    private String startTime;
+    private String stopTime;
     private String room;
 
 }

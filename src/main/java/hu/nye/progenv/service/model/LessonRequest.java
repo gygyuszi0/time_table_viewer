@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class LessonRequest {
 
     private String name;
-    private Long startTime;
-    private Long stopTime;
+    private String startTime;
+    private String stopTime;
     private String room;
 
 }
