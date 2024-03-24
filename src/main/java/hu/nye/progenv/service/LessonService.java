@@ -55,7 +55,7 @@ public class LessonService implements LessonInterface {
 
     @Override
     public void deleteLesson(Long id) {
-
+        repository.deleteById(id);
     }
 
 

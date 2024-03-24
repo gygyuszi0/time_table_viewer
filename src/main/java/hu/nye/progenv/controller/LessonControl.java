@@ -22,4 +22,10 @@ public class LessonControl {
     public LessonResponse getLesson(@PathVariable("id") Long id) {
         return lessonService.getLesson(id);
     }
+
+    @GetMapping("/delete_lesson/{id}")
+    public void deleteLesson(@PathVariable("id") Long id) {
+        lessonService.deleteLesson(id);
+    }
+
 }
