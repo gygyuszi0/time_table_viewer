@@ -1,0 +1,134 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2024-03-24T12:46:16.350Z",
+    "__export_source": "insomnia.desktop.app:v0.2.3-a",
+    "resources": [
+        {
+            "_id": "req_be5c21727fd6442aba66e1356a65eee2",
+            "parentId": "wrk_a63342a45913437193db22e9542e8489",
+            "modified": 1711284340901,
+            "created": 1711284258988,
+            "url": "localhost:8080/read_lesson/1",
+            "name": "read_lesson",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "insomnium/0.2.3-a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1711284258988,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "segmentParams": [],
+            "_type": "request"
+        },
+        {
+            "_id": "wrk_a63342a45913437193db22e9542e8489",
+            "parentId": null,
+            "modified": 1711283966648,
+            "created": 1711281992324,
+            "name": "Prog_env",
+            "description": "",
+            "scope": "collection",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_0b77d33a8e4a4460bfc0a78408aebfa5",
+            "parentId": "wrk_a63342a45913437193db22e9542e8489",
+            "modified": 1711284252684,
+            "created": 1711284223540,
+            "url": "localhost:8080/delete_lesson/1",
+            "name": "delete_lesson",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "insomnium/0.2.3-a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1711284223540,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "segmentParams": [],
+            "_type": "request"
+        },
+        {
+            "_id": "req_4c25e6027475460c8786c977cc70dd46",
+            "parentId": "wrk_a63342a45913437193db22e9542e8489",
+            "modified": 1711283958356,
+            "created": 1711281989323,
+            "url": "https://localhost:8080/create_lesson",
+            "name": "create_lesson",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\" : \"Diszkrét matematika\",\n\t\"start_time\" : \"2024/03/23:10:45\",\n\t\"stop_time\" : \"2024/03/23:10:45\",\n\t\"room\":\"B.I.183\"\n}"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnium/0.2.3-a"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1711281989322,
+            "isPrivate": false,
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "segmentParams": [],
+            "_type": "request"
+        },
+        {
+            "_id": "env_624ae463bc9f48eabb57e0a7c5349e7c",
+            "parentId": "wrk_a63342a45913437193db22e9542e8489",
+            "modified": 1711281991323,
+            "created": 1711281991323,
+            "name": "Base Environment",
+            "data": {},
+            "dataPropertyOrder": null,
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1711281991323,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_520badd34a204944911e5e9232e46583",
+            "parentId": "wrk_a63342a45913437193db22e9542e8489",
+            "modified": 1711281992323,
+            "created": 1711281992323,
+            "name": "Default Jar",
+            "cookies": [],
+            "_type": "cookie_jar"
+        }
+    ]
+}

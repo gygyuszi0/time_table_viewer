@@ -10,4 +10,10 @@ public interface LessonInterface {
 
     public LessonResponse createLesson(LessonRequest lesson);
 
+    public LessonResponse getLesson(Long id);
+
+    public LessonResponse updateLesson(Long id, LessonRequest lesson);
+
+    public void deleteLesson(Long id);
+
 }

@@ -35,4 +35,28 @@ public class LessonService implements LessonInterface {
             .room(result.getRoom())
             .build();
     }
+
+    @Override
+    public LessonResponse getLesson(Long id) {
+        Lesson lesson = repository.findById(id).orElseThrow();
+        LessonResponse response = LessonResponse.builder()
+            .name(lesson.getName())
+            .startTime(lesson.getStartTime())
+            .stopTime(lesson.getStopTime())
+            .room(lesson.getRoom())
+            .build();
+        return response;
+    }
+
+    @Override
+    public LessonResponse updateLesson(Long id, LessonRequest lesson) {
+        return null;
+    }
+
+    @Override
+    public void deleteLesson(Long id) {
+
+    }
+
+
 }
