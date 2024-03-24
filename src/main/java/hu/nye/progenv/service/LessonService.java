@@ -50,7 +50,18 @@ public class LessonService implements LessonInterface {
 
     @Override
     public LessonResponse updateLesson(Long id, LessonRequest lesson) {
-        return null;
+        Lesson lessonEntity = repository.findById(id).orElseThrow();
+        lessonEntity.setName(lesson.getName());
+        lessonEntity.setStartTime(lesson.getStartTime());
+        lessonEntity.setStopTime(lesson.getStopTime());
+        lessonEntity.setRoom(lesson.getRoom());
+        Lesson result = repository.save(lessonEntity);
+        return LessonResponse.builder()
+            .name(result.getName())
+            .startTime(result.getStartTime())
+            .stopTime(result.getStopTime())
+            .room(result.getRoom())
+            .build();
     }
 
     @Override

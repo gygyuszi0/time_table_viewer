@@ -28,4 +28,9 @@ public class LessonControl {
         lessonService.deleteLesson(id);
     }
 
+    @PostMapping("/update_lesson/{id}")
+    public LessonResponse updateLesson(@PathVariable("id") Long id, @RequestBody LessonRequest lesson) {
+        return lessonService.updateLesson(id, lesson);
+    }
+
 }
