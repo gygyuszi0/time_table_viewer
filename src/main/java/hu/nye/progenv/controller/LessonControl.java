@@ -23,12 +23,12 @@ public class LessonControl {
         return lessonService.getLesson(id);
     }
 
-    @GetMapping("/delete_lesson/{id}")
+    @DeleteMapping("/delete_lesson/{id}")
     public void deleteLesson(@PathVariable("id") Long id) {
         lessonService.deleteLesson(id);
     }
 
-    @PostMapping("/update_lesson/{id}")
+    @PutMapping("/update_lesson/{id}")
     public LessonResponse updateLesson(@PathVariable("id") Long id, @RequestBody LessonRequest lesson) {
         return lessonService.updateLesson(id, lesson);
     }
