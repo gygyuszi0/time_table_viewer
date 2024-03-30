@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import hu.nye.progenv.repository.RepositoryInterface;
@@ -37,8 +39,9 @@ public class LessonService implements LessonInterface {
     }
 
     @Override
+    @SneakyThrows
     public LessonResponse getLesson(Long id) {
-        Lesson lesson = repository.findById(id).orElseThrow();
+        Lesson lesson = repository.findById(id).orElseThrow(LessonNotFoundException::new);
         LessonResponse response = LessonResponse.builder()
             .name(lesson.getName())
             .startTime(lesson.getStartTime())
@@ -49,8 +52,9 @@ public class LessonService implements LessonInterface {
     }
 
     @Override
+    @SneakyThrows
     public LessonResponse updateLesson(Long id, LessonRequest lesson) {
-        Lesson lessonEntity = repository.findById(id).orElseThrow();
+        Lesson lessonEntity = repository.findById(id).orElseThrow(LessonNotFoundException::new);
         lessonEntity.setName(lesson.getName());
         lessonEntity.setStartTime(lesson.getStartTime());
         lessonEntity.setStopTime(lesson.getStopTime());
