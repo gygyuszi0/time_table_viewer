@@ -1,9 +1,16 @@
 package hu.nye.progenv.service.model;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import static hu.nye.progenv.service.model.Constants.YYYY_MM_DD_HH_MM;
 
 @Data
 @Builder
@@ -11,9 +18,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LessonResponse {
 
+    @NotNull
+    @NotEmpty
     private String name;
-    private String startTime;
-    private String stopTime;
+
+    @NotNull
+    @JsonFormat(pattern = YYYY_MM_DD_HH_MM)
+    private LocalDateTime startTime;
+
+    @NotNull
+    @JsonFormat(pattern = YYYY_MM_DD_HH_MM)
+    private LocalDateTime stopTime;
+
     private String room;
 
 }

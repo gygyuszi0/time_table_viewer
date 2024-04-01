@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,10 +31,10 @@ public class Lesson {
     private String name;
 
     @NotNull
-    private String startTime;
+    private LocalDateTime startTime;
 
     @NotNull
-    private String stopTime;
+    private LocalDateTime stopTime;
 
     private String room;
 
