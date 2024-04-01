@@ -1,5 +1,6 @@
 package hu.nye.progenv.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class LessonControl {
     private LessonInterface lessonService;
 
     @PostMapping("/create_lesson")    
-    public LessonResponse createLesson(@RequestBody LessonRequest lesson) {
+    public LessonResponse createLesson(@RequestBody @Valid LessonRequest lesson) {
         return lessonService.createLesson(lesson);
     }
 
@@ -29,7 +30,7 @@ public class LessonControl {
     }
 
     @PutMapping("/update_lesson/{id}")
-    public LessonResponse updateLesson(@PathVariable("id") Long id, @RequestBody LessonRequest lesson) {
+    public LessonResponse updateLesson(@PathVariable("id") Long id, @RequestBody @Valid LessonRequest lesson) {
         return lessonService.updateLesson(id, lesson);
     }
 
