@@ -1,7 +1,7 @@
 package hu.nye.progenv.service;
 
-import hu.nye.progenv.service.model.LessonRequest;
-import hu.nye.progenv.service.model.LessonResponse;
+import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
 
 import org.springframework.stereotype.Service;
 

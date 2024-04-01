@@ -1,17 +1,13 @@
 package hu.nye.progenv.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import hu.nye.progenv.repository.RepositoryInterface;
 import hu.nye.progenv.repository.DBEntity.Lesson;
-import hu.nye.progenv.service.model.LessonRequest;
-import hu.nye.progenv.service.model.LessonResponse;
+import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
 import org.springframework.stereotype.Service;
 
 @Service

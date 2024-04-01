@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import hu.nye.progenv.service.LessonInterface;
-import hu.nye.progenv.service.model.LessonRequest;
-import hu.nye.progenv.service.model.LessonResponse;
+import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
 
 @RestController
 public class LessonControl {
