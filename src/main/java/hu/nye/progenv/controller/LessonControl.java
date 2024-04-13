@@ -8,6 +8,8 @@ import hu.nye.progenv.service.LessonInterface;
 import hu.nye.progenv.controller.model.LessonRequest;
 import hu.nye.progenv.controller.model.LessonResponse;
 
+import java.util.List;
+
 @RestController
 public class LessonControl {
 
@@ -22,6 +24,11 @@ public class LessonControl {
     @GetMapping("/get_lesson/{id}")
     public LessonResponse getLesson(@PathVariable("id") Long id) {
         return lessonService.getLesson(id);
+    }
+
+    @GetMapping("/get_all_lessons")
+    public List<LessonResponse> getAllLessons() {
+        return lessonService.getAllLessons();
     }
 
     @DeleteMapping("/delete_lesson/{id}")

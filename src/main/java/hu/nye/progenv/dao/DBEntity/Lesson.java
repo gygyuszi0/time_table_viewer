@@ -1,4 +1,4 @@
-package hu.nye.progenv.repository.DBEntity;
+package hu.nye.progenv.dao.DBEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

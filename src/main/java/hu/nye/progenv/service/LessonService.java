@@ -4,11 +4,13 @@ import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import hu.nye.progenv.repository.RepositoryInterface;
-import hu.nye.progenv.repository.DBEntity.Lesson;
+import hu.nye.progenv.dao.RepositoryInterface;
+import hu.nye.progenv.dao.DBEntity.Lesson;
 import hu.nye.progenv.controller.model.LessonRequest;
 import hu.nye.progenv.controller.model.LessonResponse;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LessonService implements LessonInterface {
@@ -45,6 +47,26 @@ public class LessonService implements LessonInterface {
             .room(lesson.getRoom())
             .build();
         return response;
+    }
+
+    @Override
+    public List<LessonResponse> getAllLessons() {
+        List<Lesson> lessons = (List<Lesson>) repository.findAll();
+        if (!lessons.isEmpty()) {
+            return lessons.stream().map(lesson -> LessonResponse.builder()
+                .name(lesson.getName())
+                .startTime(lesson.getStartTime())
+                .stopTime(lesson.getStopTime())
+                .room(lesson.getRoom())
+                .build()).toList();
+        }
+        else return List.of();
+    }
+
+
+    @Override
+    public LessonResponse getLessonsByName(String name) {
+        return null;
     }
 
     @Override
