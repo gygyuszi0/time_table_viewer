@@ -65,8 +65,18 @@ public class LessonService implements LessonInterface {
 
 
     @Override
-    public LessonResponse getLessonsByName(String name) {
-        return null;
+    @SneakyThrows
+    public List<LessonResponse> getLessonsByName(String name) {
+        List<Lesson> lessons = (List<Lesson>) repository.findAllByName(name);
+        if (!lessons.isEmpty()) {
+            return lessons.stream().map(lesson -> LessonResponse.builder()
+                    .name(lesson.getName())
+                    .startTime(lesson.getStartTime())
+                    .stopTime(lesson.getStopTime())
+                    .room(lesson.getRoom())
+                    .build()).toList();
+        }
+        else return List.of();
     }
 
     @Override

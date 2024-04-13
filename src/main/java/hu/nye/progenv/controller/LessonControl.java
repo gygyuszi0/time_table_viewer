@@ -31,6 +31,11 @@ public class LessonControl {
         return lessonService.getAllLessons();
     }
 
+    @GetMapping("/get_lesson_by_name/{name}")
+    public List<LessonResponse> getLessonByName(@PathVariable("name") String name) {
+        return lessonService.getLessonsByName(name);
+    }
+
     @DeleteMapping("/delete_lesson/{id}")
     public void deleteLesson(@PathVariable("id") Long id) {
         lessonService.deleteLesson(id);

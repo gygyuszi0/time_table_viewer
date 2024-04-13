@@ -16,7 +16,7 @@ public interface LessonInterface {
 
     public List<LessonResponse> getAllLessons();
 
-    public LessonResponse getLessonsByName(String name);
+    public List<LessonResponse> getLessonsByName(String name);
 
     public LessonResponse updateLesson(Long id, LessonRequest lesson);
 
