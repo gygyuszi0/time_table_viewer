@@ -1,6 +1,8 @@
 package hu.nye.progenv.service;
 
 import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class LessonService implements LessonInterface {
     
     
