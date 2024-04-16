@@ -26,7 +26,7 @@ jobs:
                   settings-path: ${{ github.workspace }} # location for the settings.xml file
             - name: Build with Maven
               run: |
-                  VERSION=$(./versions/create-semver.sh ./pom.xml "${{github.run_number}}")
+                  sudo VERSION=$(./versions/create-semver.sh ./pom.xml "${{github.run_number}}")
                   mvn -B versions:set -DnewVersion="${VERSION}" --file ./pom.xml
                   mvn -B package --file ./pom.xml
               env:
