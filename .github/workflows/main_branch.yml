@@ -53,3 +53,4 @@ jobs:
                 mvn -B deploy --file ./pom.xml
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
