@@ -50,11 +50,13 @@ jobs:
                 mkdir -p ~/.ssh/
                 echo "$SSH_PRIVATE_KEY" > ../private.key
                 sudo chmod 600 ../private.key
-                
+                echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts              
                 chmod +x ./versions/create-semver.sh
                 VERSION=$(./versions/create-semver.sh ./pom.xml "${{github.run_number}}")
                 mvn -B versions:set -DnewVersion="${VERSION}" --file ./pom.xml
                 mvn -B deploy --file ./pom.xml
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+                SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+                SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+                SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+ 
