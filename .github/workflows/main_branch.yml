@@ -47,6 +47,10 @@ jobs:
                   settings-path: ${{ github.workspace }} # location for the settings.xml file
             - name: Build with Maven
               run: |
+                mkdir -p ~/.ssh/
+                echo "$SSH_PRIVATE_KEY" > ../private.key
+                sudo chmod 600 ../private.key
+                
                 chmod +x ./versions/create-semver.sh
                 VERSION=$(./versions/create-semver.sh ./pom.xml "${{github.run_number}}")
                 mvn -B versions:set -DnewVersion="${VERSION}" --file ./pom.xml
