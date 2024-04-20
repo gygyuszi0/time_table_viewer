@@ -255,4 +255,15 @@ class LessonServiceTest {
         assertThrows(LessonNotFoundException.class, () -> underTest.updateLesson(id, request));
         verify(repositoryInterface).findById(id);
     }
+
+    @Test
+    void deleteLesson() {
+        log.info("Case\t: Delete lesson");
+        // given
+        long id = 1L;
+        // when
+        underTest.deleteLesson(id);
+        // then
+        verify(repositoryInterface).deleteById(id);
+    }
 }
