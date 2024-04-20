@@ -25,12 +25,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.configuration.GlobalConfiguration.validate;
 
-
 @Slf4j
 class LessonServiceTest {
 
-
-    LessonService  underTest;
+    LessonService underTest;
 
     @Mock
     RepositoryInterface repositoryInterface;
@@ -47,25 +45,25 @@ class LessonServiceTest {
         log.info("Case\t:Create lesson without error");
         // given
         Lesson lesson = Lesson.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         when(repositoryInterface.save(any())).thenReturn(lesson);
 
         LessonRequest request = LessonRequest.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         LessonResponse expected = LessonResponse.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         // when
         LessonResponse result = underTest.createLesson(request);
         // then
@@ -79,32 +77,31 @@ class LessonServiceTest {
         // given
         when(repositoryInterface.save(any())).thenReturn(null);
         LessonRequest request = LessonRequest.builder()
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         // when - then
         assertThrows(NullPointerException.class, () -> underTest.createLesson(request));
     }
-
 
     @Test
     void getLessonNoError() {
         log.info("Case\t:Get lesson without error");
         // given
         Lesson lesson = Lesson.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.of(lesson));
         LessonResponse expected = LessonResponse.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         // when
         LessonResponse result = underTest.getLesson(1L);
         // then
@@ -126,22 +123,22 @@ class LessonServiceTest {
         log.info("Case\t:Get all lessons without error");
         // given
         Lesson lesson = Lesson.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         when(repositoryInterface.findAll()).thenReturn(java.util.List.of(lesson));
         LessonResponse expected_lesson = LessonResponse.builder()
-            .name("teszt")
-            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
-            .room("teszt")
-            .build();
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
         List<LessonResponse> expected = List.of(expected_lesson);
         // when
         List<LessonResponse> result = underTest.getAllLessons();
-        
+
         // then
         verify(repositoryInterface).findAll();
         assertEquals(expected, result);
@@ -157,6 +154,44 @@ class LessonServiceTest {
         List<LessonResponse> result = underTest.getAllLessons();
         // then
         verify(repositoryInterface).findAll();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void getLessonsByNameNoError() {
+        log.info("Case\t: Get all lesson with name teszt, no error");
+        // given
+        Lesson lesson = Lesson.builder()
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
+        when(repositoryInterface.findAllByName("teszt")).thenReturn(java.util.List.of(lesson));
+        LessonResponse expected_lesson = LessonResponse.builder()
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
+        List<LessonResponse> expected = List.of(expected_lesson);
+        // when
+        List<LessonResponse> result = underTest.getLessonsByName("teszt");
+        // then
+        verify(repositoryInterface).findAllByName("teszt");
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void getLessonsByNameEmpty() {
+        log.info("Case\t: Get all lesson with name teszt, empty response");
+        // given
+        when(repositoryInterface.findAllByName("teszt")).thenReturn(java.util.List.of());
+        List<LessonResponse> expected = List.of();
+        // when
+        List<LessonResponse> result = underTest.getLessonsByName("teszt");
+        // then
+        verify(repositoryInterface).findAllByName("teszt");
         assertEquals(expected, result);
     }
 }
