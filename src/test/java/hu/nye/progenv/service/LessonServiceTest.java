@@ -1,7 +1,9 @@
 package hu.nye.progenv.service;
 
 import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
 import hu.nye.progenv.dao.DBEntity.Lesson;
+import lombok.extern.slf4j.Slf4j;
 import hu.nye.progenv.dao.RepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.configuration.GlobalConfiguration.validate;
 
+
+@Slf4j
 class LessonServiceTest {
 
 
@@ -35,16 +39,47 @@ class LessonServiceTest {
     }
 
     @Test
-    void createLesson() {
+    void createLessonNoError() {
+        log.info("Case\t:Create lesson without error");
         // given
-        when(repositoryInterface.save(any())).thenReturn(any());
-        Lesson request = new Lesson();
-        request.setName("test");
-        request.setStartTime(LocalDateTime.now());
-        request.setStopTime(LocalDateTime.now());
+        Lesson lesson = Lesson.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        when(repositoryInterface.save(any())).thenReturn(lesson);
+
+        LessonRequest request = LessonRequest.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        LessonResponse expected = LessonResponse.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
         // when
-        repositoryInterface.save(request);
+        LessonResponse result = underTest.createLesson(request);
         // then
-        verify(repositoryInterface).save(request);
+        verify(repositoryInterface).save(lesson);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void createLessonError() {
+        log.info("Case\t:Create lesson with error");
+        // given
+        when(repositoryInterface.save(any())).thenReturn(null);
+        LessonRequest request = LessonRequest.builder()
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        // when - then
+        assertThrows(NullPointerException.class, () -> underTest.createLesson(request));
     }
 }
