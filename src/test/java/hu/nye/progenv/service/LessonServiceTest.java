@@ -1,11 +1,14 @@
 package hu.nye.progenv.service;
 
+import java.util.List;
+
 import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
 import hu.nye.progenv.controller.model.LessonRequest;
 import hu.nye.progenv.controller.model.LessonResponse;
 import hu.nye.progenv.dao.DBEntity.Lesson;
 import lombok.extern.slf4j.Slf4j;
 import hu.nye.progenv.dao.RepositoryInterface;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -116,5 +119,44 @@ class LessonServiceTest {
         when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.empty());
         // when - then
         assertThrows(LessonNotFoundException.class, () -> underTest.getLesson(1L));
+    }
+
+    @Test
+    void getAllLessonsNoError() {
+        log.info("Case\t:Get all lessons without error");
+        // given
+        Lesson lesson = Lesson.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        when(repositoryInterface.findAll()).thenReturn(java.util.List.of(lesson));
+        LessonResponse expected_lesson = LessonResponse.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        List<LessonResponse> expected = List.of(expected_lesson);
+        // when
+        List<LessonResponse> result = underTest.getAllLessons();
+        
+        // then
+        verify(repositoryInterface).findAll();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void getAllLessonsEmpty() {
+        log.info("Case\t:Get all lessons empty response");
+        // given
+        when(repositoryInterface.findAll()).thenReturn(java.util.List.of());
+        List<LessonResponse> expected = List.of();
+        // when
+        List<LessonResponse> result = underTest.getAllLessons();
+        // then
+        verify(repositoryInterface).findAll();
+        assertEquals(expected, result);
     }
 }
