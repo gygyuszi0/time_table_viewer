@@ -83,6 +83,7 @@ class LessonServiceTest {
                 .build();
         // when - then
         assertThrows(NullPointerException.class, () -> underTest.createLesson(request));
+        verify(repositoryInterface).save(any());
     }
 
     @Test
@@ -116,6 +117,7 @@ class LessonServiceTest {
         when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.empty());
         // when - then
         assertThrows(LessonNotFoundException.class, () -> underTest.getLesson(1L));
+        verify(repositoryInterface).findById(1L);
     }
 
     @Test
@@ -193,5 +195,64 @@ class LessonServiceTest {
         // then
         verify(repositoryInterface).findAllByName("teszt");
         assertEquals(expected, result);
+    }
+
+    @Test
+    void updateLessonNoError() {
+        log.info("Case\t: Update lesson without error");
+        // given
+        Lesson lesson_old = Lesson.builder()
+                .name("teszt")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt")
+                .build();
+        when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.of(lesson_old));
+
+        Lesson lesson_new = Lesson.builder()
+                .name("teszt2")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt2")
+                .build();
+        when(repositoryInterface.save(any())).thenReturn(lesson_new);
+        
+        LessonRequest request = LessonRequest.builder()
+                .name("teszt2")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt2")
+                .build();
+        long id = 1L;
+        
+        LessonResponse expected = LessonResponse.builder()
+                .name("teszt2")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt2")
+                .build();
+        // when
+        LessonResponse result = underTest.updateLesson(id, request);
+        // then
+        verify(repositoryInterface).findById(id);
+        verify(repositoryInterface).save(lesson_new);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void updateLessonError() {
+        log.info("Case\t: Update lesson with error");
+        // given
+        LessonRequest request = LessonRequest.builder()
+                .name("teszt2")
+                .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+                .room("teszt2")
+                .build();
+        long id = 1L;
+        when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.empty());
+        // when - then
+        assertThrows(LessonNotFoundException.class, () -> underTest.updateLesson(id, request));
+        verify(repositoryInterface).findById(id);
     }
 }
