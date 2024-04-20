@@ -1,8 +1,10 @@
 package hu.nye.progenv.service;
 
 import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
 import hu.nye.progenv.dao.DBEntity.Lesson;
 import hu.nye.progenv.dao.RepositoryInterface;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.configuration.GlobalConfiguration.validate;
 
+@Slf4j
 class LessonServiceTest {
 
 
@@ -37,14 +40,33 @@ class LessonServiceTest {
     @Test
     void createLesson() {
         // given
-        when(repositoryInterface.save(any())).thenReturn(any());
-        Lesson request = new Lesson();
-        request.setName("test");
-        request.setStartTime(LocalDateTime.now());
-        request.setStopTime(LocalDateTime.now());
+        Lesson lesson = Lesson.builder()
+                .name("name")
+                .startTime(LocalDateTime.now())
+                .stopTime(LocalDateTime.now())
+                .room("room")
+                .build();
+        when(repositoryInterface.save(lesson)).thenReturn(expected);
+        LessonRequest request = new LessonRequest().builder()
+                .name("name")
+                .startTime(new LocalDateTime)
+                .date(LocalDateTime.now())
+                .build();
         // when
-        repositoryInterface.save(request);
+        underTest.createLesson(request);
         // then
-        verify(repositoryInterface).save(request);
+        verify(repositoryInterface).save(any());
+    }
+
+
+    @Test
+    void getAllLessonsNoError() {
+        // given
+        log.info("getAllLessonsNoError");
+        when(repositoryInterface.findAll()).thenReturn(any());
+        // when
+        repositoryInterface.findAll();
+        // then
+        verify(repositoryInterface).findAll();
     }
 }
