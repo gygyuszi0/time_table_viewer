@@ -1,5 +1,6 @@
 package hu.nye.progenv.service;
 
+import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
 import hu.nye.progenv.controller.model.LessonRequest;
 import hu.nye.progenv.controller.model.LessonResponse;
 import hu.nye.progenv.dao.DBEntity.Lesson;
@@ -81,5 +82,39 @@ class LessonServiceTest {
             .build();
         // when - then
         assertThrows(NullPointerException.class, () -> underTest.createLesson(request));
+    }
+
+
+    @Test
+    void getLessonNoError() {
+        log.info("Case\t:Get lesson without error");
+        // given
+        Lesson lesson = Lesson.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.of(lesson));
+        LessonResponse expected = LessonResponse.builder()
+            .name("teszt")
+            .startTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .stopTime(LocalDateTime.of(1, 2, 3, 4, 5, 6))
+            .room("teszt")
+            .build();
+        // when
+        LessonResponse result = underTest.getLesson(1L);
+        // then
+        verify(repositoryInterface).findById(1L);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void getLessonError() {
+        log.info("Case\t:Get lesson with error");
+        // given
+        when(repositoryInterface.findById(any())).thenReturn(java.util.Optional.empty());
+        // when - then
+        assertThrows(LessonNotFoundException.class, () -> underTest.getLesson(1L));
     }
 }
