@@ -5,9 +5,11 @@ import java.util.List;
 import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
 import hu.nye.progenv.controller.model.LessonRequest;
 import hu.nye.progenv.controller.model.LessonResponse;
+import hu.nye.progenv.controller.model.LessonResponse;
 import hu.nye.progenv.dao.DBEntity.Lesson;
 import lombok.extern.slf4j.Slf4j;
 import hu.nye.progenv.dao.RepositoryInterface;
+import lombok.extern.slf4j.Slf4j;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
