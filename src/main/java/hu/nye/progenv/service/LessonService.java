@@ -69,7 +69,6 @@ public class LessonService implements LessonInterface {
 
 
     @Override
-    @SneakyThrows
     public List<LessonResponse> getLessonsByName(String name) {
         List<Lesson> lessons = (List<Lesson>) repository.findAllByName(name);
         if (!lessons.isEmpty()) {
