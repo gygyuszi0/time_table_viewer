@@ -33,6 +33,9 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     publish:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
         steps:
             - uses: actions/checkout@v3
             - name: Set up JDK 17
