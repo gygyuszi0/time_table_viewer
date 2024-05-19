@@ -45,7 +45,7 @@ jobs:
                   java-version: "17"
                   distribution: "temurin"
                   cache: maven
-            - name: Build with Maven
+            - name: Deploy jar with Maven
               run: |
                 chmod +x ./versions/create-semver.sh
                 VERSION=$(./versions/create-semver.sh ./pom.xml "${{github.run_number}}-$GITHUB_SHA")
@@ -53,4 +53,12 @@ jobs:
                 mvn -B deploy --file ./pom.xml
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
- 
+            - name: Deploy contaniner
+              uses: docker/login-action@v2
+              with:
+                registry: ${{ env.DOCKER_REGISTRY }}
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                docker build . -t ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}/time_table_viewer:${VERSION}
+                docker push ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}/time_table_viewer:${VERSION}
