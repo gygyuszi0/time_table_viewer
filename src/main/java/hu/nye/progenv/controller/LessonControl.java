@@ -1,15 +1,20 @@
 package hu.nye.progenv.controller;
 
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import hu.nye.progenv.service.LessonInterface;
-import hu.nye.progenv.controller.model.LessonRequest;
-import hu.nye.progenv.controller.model.LessonResponse;
-
 import java.util.List;
 
+import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
+import hu.nye.progenv.service.LessonInterface;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
+/**
+ * Controller for Lesson.
+ */
 @RestController
 public class LessonControl {
 
