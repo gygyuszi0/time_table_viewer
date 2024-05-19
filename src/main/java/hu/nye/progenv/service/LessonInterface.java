@@ -1,12 +1,14 @@
 package hu.nye.progenv.service;
 
-import hu.nye.progenv.controller.model.LessonRequest;
-import hu.nye.progenv.controller.model.LessonResponse;
-
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
+import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
+import org.springframework.stereotype.Service;
+
+/**
+ * Lesson service interface.
+ */
 @Service
 public interface LessonInterface {
 

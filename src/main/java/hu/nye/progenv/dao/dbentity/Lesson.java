@@ -1,4 +1,6 @@
-package hu.nye.progenv.dao.DBEntity;
+package hu.nye.progenv.dao.dbentity;
+
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +13,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
+/**
+ * Lesson entity.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

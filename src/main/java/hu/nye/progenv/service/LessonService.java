@@ -1,19 +1,22 @@
 package hu.nye.progenv.service;
 
-import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
+import java.util.List;
+
+import hu.nye.progenv.controller.model.LessonRequest;
+import hu.nye.progenv.controller.model.LessonResponse;
+import hu.nye.progenv.customexceptions.LessonNotFoundException;
+import hu.nye.progenv.dao.RepositoryInterface;
+import hu.nye.progenv.dao.dbentity.Lesson;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import hu.nye.progenv.dao.RepositoryInterface;
-import hu.nye.progenv.dao.DBEntity.Lesson;
-import hu.nye.progenv.controller.model.LessonRequest;
-import hu.nye.progenv.controller.model.LessonResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
+/**
+ * Service for Lesson.
+ */
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
@@ -63,8 +66,9 @@ public class LessonService implements LessonInterface {
                 .stopTime(lesson.getStopTime())
                 .room(lesson.getRoom())
                 .build()).toList();
+        } else {
+            return List.of();
         }
-        else return List.of();
     }
 
 
@@ -78,8 +82,9 @@ public class LessonService implements LessonInterface {
                     .stopTime(lesson.getStopTime())
                     .room(lesson.getRoom())
                     .build()).toList();
+        } else {
+            return List.of();
         }
-        else return List.of();
     }
 
     @Override
