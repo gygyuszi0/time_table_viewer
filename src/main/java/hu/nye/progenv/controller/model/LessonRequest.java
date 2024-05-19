@@ -1,9 +1,10 @@
 package hu.nye.progenv.controller.model;
 
+import static hu.nye.progenv.controller.model.Constants.YYYY_MM_DD_HH_MM;
+
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import hu.nye.progenv.controller.model.Constants.YYYY_MM_DD_HH_MM;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

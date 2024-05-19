@@ -2,7 +2,7 @@ package hu.nye.progenv.dao;
 
 import java.util.List;
 
-import hu.nye.progenv.dao.DBEntity.Lesson;
+import hu.nye.progenv.dao.dbentity.Lesson;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,11 +2,11 @@ package hu.nye.progenv.service;
 
 import java.util.List;
 
-import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
 import hu.nye.progenv.controller.model.LessonRequest;
 import hu.nye.progenv.controller.model.LessonResponse;
-import hu.nye.progenv.dao.DBEntity.Lesson;
+import hu.nye.progenv.customexceptions.LessonNotFoundException;
 import hu.nye.progenv.dao.RepositoryInterface;
+import hu.nye.progenv.dao.dbentity.Lesson;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;

@@ -130,9 +130,9 @@
                         <exclude>hu/nye/progenv/Main.*</exclude>
                         <exclude>hu/nye/progenv/controller/*</exclude>
                         <exclude>hu/nye/progenv/controller/model/*</exclude>
-                        <exclude>hu/nye/progenv/CustomExceptions/*</exclude>
+                        <exclude>hu/nye/progenv/customexceptions/*</exclude>
                         <exclude>hu/nye/progenv/dao/*</exclude>
-                        <exclude>hu/nye/progenv/dao/DBEntity/*</exclude>
+                        <exclude>hu/nye/progenv/dao/dbentity/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

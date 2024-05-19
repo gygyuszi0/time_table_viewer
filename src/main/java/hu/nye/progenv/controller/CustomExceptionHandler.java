@@ -1,6 +1,6 @@
 package hu.nye.progenv.controller;
 
-import hu.nye.progenv.CustomExceptions.LessonNotFoundException;
+import hu.nye.progenv.customexceptions.LessonNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

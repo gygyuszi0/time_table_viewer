@@ -1,4 +1,4 @@
-package hu.nye.progenv.dao.DBEntity;
+package hu.nye.progenv.dao.dbentity;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package hu.nye.progenv.CustomExceptions;
+package hu.nye.progenv.customexceptions;
 
 /**
  * Exception for when a lesson is not found.
